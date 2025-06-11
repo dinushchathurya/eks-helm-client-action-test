@@ -1,0 +1,71 @@
+# eks-cluster-public-only.yaml
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: public-eks-cluster
+  region: us-west-2
+  version: "1.28"
+
+# VPC with public subnets 
+vpc:
+  cidr: "10.0.0.0/16"
+  enableDnsHostnames: true
+  enableDnsSupport: true
+  
+  # Disable NAT Gateway
+  nat:
+    gateway: Disable
+  
+  # Only public subnets
+  subnets:
+    public:
+      us-west-2a:
+        cidr: "10.0.1.0/24"
+        availabilityZone: us-west-2a
+      us-west-2b:
+        cidr: "10.0.2.0/24"
+        availabilityZone: us-west-2b
+
+managedNodeGroups:
+  - name: public-nodes
+    instanceType: t3.micro
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 3
+    volumeSize: 20
+    volumeType: gp3
+    
+    # Nodes will be in public subnets
+    subnets:
+      - us-west-2a
+      - us-west-2b
+    
+    spot: true
+    instancesDistribution:
+      maxPrice: 0.02
+      instanceTypes: ["t3.micro", "t3.small", "t2.micro"]
+      onDemandBaseCapacity: 0
+      onDemandPercentageAboveBaseCapacity: 0
+    
+    # Enable public IP assignment
+    desiredCapacity: 1
+    ssh:
+      allow: true
+      publicKeyName: my-key-pair
+
+# Public endpoint only
+endpoint:
+  publicAccess:
+    enabled: true
+    cidrs: ["0.0.0.0/0"]
+  privateAccess:
+    enabled: false
+
+addons:
+  - name: vpc-cni
+  - name: coredns
+  - name: kube-proxy
+
+iam:
+  withOIDC: true
