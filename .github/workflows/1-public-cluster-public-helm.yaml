@@ -19,12 +19,12 @@ jobs:
           aws-region: us-west-2
 
       - name: Deploy to EKS
-        uses: open-source-srilanka/eks-helm-client-github-action@v2.0.0-rc.1
+        uses: open-source-srilanka/eks-helm-client-github-action@v1.0.0
         env:
           CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+          REGION_CODE: ${{ secrets.REGION_CODE }}
         with:
           debug: true
-          region: us-west-2
           args: |
             helm repo add bitnami https://charts.bitnami.com/bitnami
             helm repo update
