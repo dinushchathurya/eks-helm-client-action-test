@@ -21,7 +21,7 @@ jobs:
       - name: Deploy to EKS
         uses: open-source-srilanka/eks-helm-client-github-action@v2.0.0-rc.1
         with:
-          cluster-name: public-eks-cluster
+          cluster-name: public-cluster
           region: us-west-2
           args: |
             helm repo add bitnami https://charts.bitnami.com/bitnami
