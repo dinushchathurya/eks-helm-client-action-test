@@ -23,6 +23,7 @@ jobs:
         env:
           CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
         with:
+          debug: true
           region: us-west-2
           args: |
             helm repo add bitnami https://charts.bitnami.com/bitnami
