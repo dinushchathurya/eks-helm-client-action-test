@@ -19,7 +19,7 @@ jobs:
           aws-region: us-west-2
 
       - name: Deploy to EKS
-        uses: dinushchathurya/eks-helm-client-test:latest 
+        uses: dinushchathurya/eks-helm-client-test:91d1295805bb769c8ea19eef4c216972acdaaa1b 
         env:
           CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
           REGION_CODE: ${{ secrets.REGION_CODE }}
