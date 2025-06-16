@@ -24,12 +24,10 @@ jobs:
           CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
           REGION_CODE: ${{ secrets.REGION_CODE }}
         with:
-          debug: true
-          args:  >
-            bash -c "
-              helm repo add bitnami https://charts.bitnami.com/bitnami;
-              helm repo update;
-              helm install bitnami/mysql --generate-name -n test-basic --create-namespace;
-              kubectl get pods -n test-basic
-              kubectl get svc -n test-basic
-            "
+          args: |
+            helm repo add bitnami https://charts.bitnami.com/bitnami;
+            helm repo update;
+            helm install bitnami/mysql --generate-name -n test-basic --create-namespace;
+            kubectl get pods -n test-basic
+            kubectl get svc -n test-basic
+            
