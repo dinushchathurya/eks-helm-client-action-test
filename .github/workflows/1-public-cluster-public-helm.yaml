@@ -24,7 +24,7 @@ jobs:
           CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
           REGION_CODE: ${{ secrets.REGION_CODE }}
         with:
-          args: 
+          args:  >
             bash -c "
               helm repo add bitnami https://charts.bitnami.com/bitnami;
               helm repo update;
@@ -32,4 +32,3 @@ jobs:
               kubectl get pods -n test-basic
               kubectl get svc -n test-basic
             "
-            
