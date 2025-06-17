@@ -3,6 +3,8 @@ name: Deploy to EKS
 on:
   push:
     branches: [main]
+    paths:
+      - '.github/workflows/1-public-cluster-public-helm.yaml'
 
 jobs:
   deploy:
@@ -33,3 +35,5 @@ jobs:
           helm install mysql-release oci://demo.goharbor.io/devninja/mysql --version 13.0.2 -n test-basic --create-namespace
           kubectl get pods -n test-basic
           kubectl get svc -n test-basic
+
+          
