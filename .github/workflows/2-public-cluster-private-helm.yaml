@@ -31,8 +31,8 @@ jobs:
           HARBOR_PASSWORD: ${{ secrets.HARBOR_PASSWORD }}
         with:
           args: | 
-            helm registry login demo.goharbor.io --username $HARBOR_USERNAME --password $HARBOR_PASSWORD
-            helm uninstall mysql-release -n test-basic || true
+            # helm registry login demo.goharbor.io --username $HARBOR_USERNAME --password $HARBOR_PASSWORD
+            # helm uninstall mysql-release -n test-basic || true
             helm install mysql-release oci://demo.goharbor.io/devninja/mysql --version 13.0.2 -n test-basic --create-namespace
             kubectl get pods -n test-basic
             kubectl get svc -n test-basic
