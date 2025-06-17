@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.github/workflows/1-public-cluster-private-helm.yaml'
+      - '.github/workflows/2-public-cluster-private-helm.yaml'
 
 jobs:
   basic-deployment:
