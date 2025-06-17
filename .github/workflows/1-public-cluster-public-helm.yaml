@@ -26,10 +26,12 @@ jobs:
           HARBOR_USERNAME: ${{ secrets.HARBOR_USERNAME }}
           HARBOR_PASSWORD: ${{ secrets.HARBOR_PASSWORD }}
         with:
-          args: |
-            helm registry login demo.goharbor.io --username $HARBOR_USERNAME --password $HARBOR_PASSWORD;
-            helm install mysql-release oci://demo.goharbor.io/devninja/mysql --version 10.5.3 -n test-basic --create-namespace;
-            kubectl get pods -n test-basic;
-            kubectl get svc -n test-basic;
-            kubectl delete -n test-basic --all;
+          args: > 
+            bash -c "
+              helm registry login demo.goharbor.io --username $HARBOR_USERNAME --password $HARBOR_PASSWORD;
+              helm install mysql-release oci://demo.goharbor.io/devninja/mysql --version 10.5.3 -n test-basic --create-namespace;
+              kubectl get pods -n test-basic;
+              kubectl get svc -n test-basic;
+              kubectl delete -n test-basic --all;
+            "
             
