@@ -1,4 +1,4 @@
-name: Deploy to EKS
+name: Deploy to Public Helm to Public Cluster
 
 on:
   push:
@@ -36,4 +36,3 @@ jobs:
           kubectl get pods -n test-basic
           kubectl get svc -n test-basic
 
-          
