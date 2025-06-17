@@ -26,7 +26,7 @@ jobs:
           HARBOR_USERNAME: ${{ secrets.HARBOR_USERNAME }}
           HARBOR_PASSWORD: ${{ secrets.HARBOR_PASSWORD }}
         with:
-          args: > 
+          args:  >
             bash -c "
               helm registry login demo.goharbor.io --username $HARBOR_USERNAME --password $HARBOR_PASSWORD;
               helm install mysql-release oci://demo.goharbor.io/devninja/mysql --version 13.0.2 -n test-basic --create-namespace;
