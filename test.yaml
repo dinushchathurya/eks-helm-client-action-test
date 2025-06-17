@@ -27,8 +27,9 @@ jobs:
           HARBOR_PASSWORD: ${{ secrets.HARBOR_PASSWORD }}
         with:
           args: |
-            helm registry login demo.goharbor.io --username $HARBOR_USERNAME --password $HARBOR_PASSWORD;
-            helm install mysql-release oci://demo.goharbor.io/devninja/mysql --version 10.5.3 -n test-basic --create-namespace;
+            helm repo add bitnami https://charts.bitnami.com/bitnami;
+            helm repo update;
+            helm install bitnami/mysql --generate-name -n test-basic --create-namespace;
             kubectl get pods -n test-basic;
             kubectl get svc -n test-basic;
             kubectl delete -n test-basic --all;
