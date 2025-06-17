@@ -25,8 +25,6 @@ jobs:
         env:
           CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
           REGION_CODE: ${{ secrets.REGION_CODE }}
-          HARBOR_USERNAME: ${{ secrets.HARBOR_USERNAME }}
-          HARBOR_PASSWORD: ${{ secrets.HARBOR_PASSWORD }}
         with:
           args: | 
             helm repo add bitnami https://charts.bitnami.com/bitnami
